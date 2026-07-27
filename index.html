@@ -182,31 +182,34 @@ h1 {
     color: rgba(255, 255, 255, 0.9);
 }
 
-/* --- IMAGENES EN LAS ESQUINAS --- */
+/* --- IMAGENES EN LAS ESQUINAS (Más grandes e iguales) --- */
 .gif-esquina-izq, .gif-esquina-der {
     position: fixed;
-    bottom: 10px;
-    width: 150px; 
+    bottom: 20px;
+    width: 250px;  /* Ancho mucho más grande */
+    height: 250px; /* Alto fijo para igualarlas */
+    object-fit: contain; /* Obliga a que ambas se ajusten al recuadro sin deformarse */
     z-index: 1000;
     pointer-events: none; 
 }
 
 .gif-esquina-izq {
-    left: 20px;
+    left: 30px;
 }
 
 .gif-esquina-der {
-    right: 20px;
+    right: 30px;
 }
 
 /* Ajuste para pantallas de celulares */
 @media (max-width: 768px) {
     .gif-esquina-izq, .gif-esquina-der {
-        width: 90px;
-        bottom: 5px;
+        width: 120px;
+        height: 120px;
+        bottom: 10px;
     }
-    .gif-esquina-izq { left: 5px; }
-    .gif-esquina-der { right: 5px; }
+    .gif-esquina-izq { left: 10px; }
+    .gif-esquina-der { right: 10px; }
 }
 </style>
 </head>
@@ -445,9 +448,9 @@ h1 {
 
 </div>
 
-<!-- AQUI ESTAN TUS IMAGENES CREADAS -->
-<img src="Perros.jpg" alt="Perritos" class="gif-esquina-izq">
-<img src="Gato%20y%20perro.jpg" alt="Gato y Perro" class="gif-esquina-der">
+<!-- AQUI TUS IMAGENES. RECUERDA SUBIRLAS SIN FONDO COMO .PNG -->
+<img src="perros.png" alt="Perritos" class="gif-esquina-izq">
+<img src="gatos.png" alt="Gatos" class="gif-esquina-der">
 
 <script>
 const ramos = document.querySelectorAll(".ramo");
