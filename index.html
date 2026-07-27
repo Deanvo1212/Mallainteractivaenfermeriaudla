@@ -1,98 +1,110 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Malla Enfermería 💗</title>
 
 <style>
+.progreso-container{
+
+    width:80%;
+    margin:auto;
+    margin-bottom:30px;
+
+}
+
+.texto-progreso{
+
+    text-align:center;
+    font-weight:bold;
+    color:#c2185b;
+    margin-bottom:8px;
+
+}
+
+.barra{
+
+    width:100%;
+    height:25px;
+    background:#ffd4e8;
+    border-radius:20px;
+    overflow:hidden;
+
+}
+
+#barraProgreso{
+
+    width:0%;
+    height:100%;
+    background:#ff4fa3;
+    transition:0.5s;
+
+}
 
 body{
-
-font-family:Arial;
-
-background:#fff0f6;
-
-margin:0;
-
-padding:30px;
-
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#ffeef5;
 }
 
 h1{
-
-text-align:center;
-
-color:#d63384;
-
+    text-align:center;
+    color:#d63384;
+    margin-top:30px;
 }
 
 .container{
-
-display:flex;
-
-gap:20px;
-
-overflow-x:auto;
-
+    display:flex;
+    gap:20px;
+    padding:25px;
+    overflow-x:auto;
 }
 
 .semestre{
-
-background:white;
-
-border-radius:20px;
-
-padding:15px;
-
-min-width:220px;
-
-box-shadow:0 5px 15px rgba(0,0,0,.15);
-
+    min-width:260px;
+    background:white;
+    border-radius:18px;
+    box-shadow:0px 5px 15px rgba(0,0,0,.15);
+    padding:15px;
 }
 
 .semestre h2{
-
-text-align:center;
-
-color:#d63384;
-
+    background:#ff69b4;
+    color:white;
+    text-align:center;
+    border-radius:10px;
+    padding:10px;
+    margin-top:0;
 }
 
 .ramo{
-
-background:#ffd6e7;
-
-padding:12px;
-
-border-radius:12px;
-
-margin-bottom:10px;
-
-cursor:pointer;
-
-transition:.3s;
-
-font-size:15px;
-
+    background:#ffd4e8;
+    border-radius:10px;
+    padding:10px;
+    margin-bottom:10px;
+    cursor:pointer;
+    transition:.3s;
 }
 
 .ramo:hover{
+    transform:scale(1.03);
+}
 
-transform:scale(1.04);
+.codigo{
+    font-weight:bold;
+    color:#c2185b;
+}
 
+.nombre{
+    font-size:14px;
 }
 
 .aprobado{
-
-background:#ff69b4;
-
-color:white;
-
-text-decoration:line-through;
-
+    background:#ff69b4;
+    color:white;
+    text-decoration:line-through;
 }
 
 </style>
@@ -101,39 +113,171 @@ text-decoration:line-through;
 
 <body>
 
-<h1>💗 Malla Enfermería 💗</h1>
+<h1>💗 Malla Enfermería UDLA 💗</h1>
+
+<div class="progreso-container">
+
+    <div class="texto-progreso">
+        Progreso de la carrera:
+        <span id="porcentaje">0%</span>
+    </div>
+
+    <div class="barra">
+
+        <div id="barraProgreso"></div>
+
+    </div>
+
+</div>
 
 <div class="container">
+<!-- SEMESTRE 1 -->
 
 <div class="semestre">
 
 <h2>Semestre 1</h2>
 
-<div class="ramo">MAT110 Introducción a Matemática</div>
+<div class="ramo">
+<div class="codigo">MAT110</div>
+<div class="nombre">Introducción a Matemática Aplicada</div>
+</div>
 
-<div class="ramo">CBI111 Biología Celular</div>
+<div class="ramo">
+<div class="codigo">CBI111</div>
+<div class="nombre">Biología Celular</div>
+</div>
 
-<div class="ramo">LIC003 Salud Pública</div>
+<div class="ramo">
+<div class="codigo">LIC003</div>
+<div class="nombre">Salud Pública y Políticas Públicas</div>
+</div>
 
-<div class="ramo">ENF301 Atención Enfermería I</div>
+<div class="ramo">
+<div class="codigo">ENF301</div>
+<div class="nombre">Proceso de Atención en Enfermería I</div>
+</div>
 
 </div>
+
+<!-- SEMESTRE 2 -->
 
 <div class="semestre">
 
 <h2>Semestre 2</h2>
 
-<div class="ramo">ENF410 Fundamentos Enfermería</div>
+<div class="ramo">
+<div class="codigo">ENF410</div>
+<div class="nombre">Fundamentos de Enfermería en Salud Comunitaria</div>
+</div>
 
-<div class="ramo">CBI202 Histoembriología</div>
+<div class="ramo">
+<div class="codigo">CBI202</div>
+<div class="nombre">Histoembriología</div>
+</div>
 
-<div class="ramo">CQU203 Química</div>
+<div class="ramo">
+<div class="codigo">CQU203</div>
+<div class="nombre">Fundamentos de Química y Biología Área Salud</div>
+</div>
 
-<div class="ramo">LIC004 Participación e Intervención</div>
+<div class="ramo">
+<div class="codigo">LIC004</div>
+<div class="nombre">Métodos Participativos e Intervención Comunitaria</div>
+</div>
 
-<div class="ramo">ENF402 Atención Enfermería II</div>
+<div class="ramo">
+<div class="codigo">ENF402</div>
+<div class="nombre">Proceso de Atención en Enfermería II</div>
+</div>
 
-<div class="ramo">ENF302 Psicología</div>
+<div class="ramo">
+<div class="codigo">ENF302</div>
+<div class="nombre">Psicología para el Ejercicio de la Enfermería</div>
+</div>
+
+</div>
+
+<!-- SEMESTRE 3 -->
+
+<div class="semestre">
+
+<h2>Semestre 3</h2>
+
+<div class="ramo">
+<div class="codigo">ENF504</div>
+<div class="nombre">Epidemiología</div>
+</div>
+
+<div class="ramo">
+<div class="codigo">CBI302</div>
+<div class="nombre">Microbiología y Parasitología para Enfermería</div>
+</div>
+
+<div class="ramo">
+<div class="codigo">MYF302</div>
+<div class="nombre">Fisiología General</div>
+</div>
+
+<div class="ramo">
+<div class="codigo">AES519</div>
+<div class="nombre">Bioestadística</div>
+</div>
+
+<div class="ramo">
+<div class="codigo">LIC005</div>
+<div class="nombre">Taller Interdisciplinario I</div>
+</div>
+
+<div class="ramo">
+<div class="codigo">ENF506</div>
+<div class="nombre">Educación para la Salud</div>
+</div>
+
+</div>
+
+<!-- SEMESTRE 4 -->
+
+<div class="semestre">
+
+<h2>Semestre 4</h2>
+
+<div class="ramo">
+<div class="codigo">ENF404</div>
+<div class="nombre">Farmacología</div>
+</div>
+
+<div class="ramo">
+<div class="codigo">ENF401</div>
+<div class="nombre">Fisiopatología</div>
+</div>
+
+<div class="ramo">
+<div class="codigo">LIC006</div>
+<div class="nombre">Taller Interdisciplinario II</div>
+</div>
+
+</div>
+
+<!-- SEMESTRE 5 -->
+
+<div class="semestre">
+
+<h2>Semestre 5</h2>
+
+<div class="ramo">
+<div class="codigo">ENF501</div>
+<div class="nombre">Salud y Morbilidad del Adulto I</div>
+</div>
+
+<div class="ramo">
+<div class="codigo">ENF505</div>
+<div class="nombre">Gestión y Administración en Enfermería I</div>
+</div>
+
+<div class="ramo">
+<div class="codigo">ENF500</div>
+<div class="nombre">Práctica Integrada I</div>
+</div>
 
 </div>
 
@@ -141,20 +285,41 @@ text-decoration:line-through;
 
 <script>
 
-const ramos=document.querySelectorAll(".ramo");
+const ramos = document.querySelectorAll(".ramo");
 
-ramos.forEach(r=>{
+const barra = document.getElementById("barraProgreso");
 
-r.onclick=()=>{
+const porcentaje = document.getElementById("porcentaje");
 
-r.classList.toggle("aprobado");
+actualizarBarra();
+
+ramos.forEach(ramo=>{
+
+    ramo.addEventListener("click",()=>{
+
+        ramo.classList.toggle("aprobado");
+
+        actualizarBarra();
+
+    });
+
+});
+
+function actualizarBarra(){
+
+    let aprobados = document.querySelectorAll(".aprobado").length;
+
+    let total = ramos.length;
+
+    let progreso = (aprobados/total)*100;
+
+    barra.style.width = progreso+"%";
+
+    porcentaje.innerHTML = progreso.toFixed(0)+"%";
 
 }
-
-})
 
 </script>
 
 </body>
-
 </html>
