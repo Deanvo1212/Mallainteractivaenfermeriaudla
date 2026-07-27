@@ -7,108 +7,115 @@
 <title>Malla Enfermería 💗</title>
 
 <style>
-.progreso-container{
-
-    width:80%;
-    margin:auto;
-    margin-bottom:30px;
-
+.progreso-container {
+    width: 80%;
+    margin: auto;
+    margin-bottom: 30px;
 }
 
-.texto-progreso{
-
-    text-align:center;
-    font-weight:bold;
-    color:#c2185b;
-    margin-bottom:8px;
-
+.texto-progreso {
+    text-align: center;
+    font-weight: bold;
+    color: #c2185b;
+    margin-bottom: 8px;
 }
 
-.barra{
-
-    width:100%;
-    height:25px;
-    background:#ffd4e8;
-    border-radius:20px;
-    overflow:hidden;
-
+.barra {
+    width: 100%;
+    height: 25px;
+    background: #ffd4e8;
+    border-radius: 20px;
+    overflow: hidden;
 }
 
-#barraProgreso{
-
-    width:0%;
-    height:100%;
-    background:#ff4fa3;
-    transition:0.5s;
-
+#barraProgreso {
+    width: 0%;
+    height: 100%;
+    background: #ff4fa3;
+    transition: 0.5s;
 }
 
-body{
-    margin:0;
-    font-family:Arial, Helvetica, sans-serif;
-    background:#ffeef5;
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #ffeef5;
 }
 
-h1{
-    text-align:center;
-    color:#d63384;
-    margin-top:30px;
+h1 {
+    text-align: center;
+    color: #d63384;
+    margin-top: 30px;
 }
 
-.container{
-    display:flex;
-    gap:20px;
-    padding:25px;
-    overflow-x:auto;
+.container {
+    display: flex;
+    gap: 20px;
+    padding: 25px;
+    overflow-x: auto;
 }
 
-.semestre{
-    min-width:260px;
-    background:white;
-    border-radius:18px;
-    box-shadow:0px 5px 15px rgba(0,0,0,.15);
-    padding:15px;
+.semestre {
+    min-width: 260px;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0px 5px 15px rgba(0,0,0,.15);
+    padding: 15px;
 }
 
-.semestre h2{
-    background:#ff69b4;
-    color:white;
-    text-align:center;
-    border-radius:10px;
-    padding:10px;
-    margin-top:0;
+.semestre h2 {
+    background: #ff69b4;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 0;
 }
 
-.ramo{
-    background:#ffd4e8;
-    border-radius:10px;
-    padding:10px;
-    margin-bottom:10px;
-    cursor:pointer;
-    transition:.3s;
+/* ESTADO 1: DISPONIBLE (Iluminado por defecto) */
+.ramo {
+    background: #ffd4e8;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: .3s;
+    border: 2px solid transparent;
 }
 
-.ramo:hover{
-    transform:scale(1.03);
+.ramo:hover {
+    transform: scale(1.03);
+    border: 2px solid #ff69b4;
 }
 
-.codigo{
-    font-weight:bold;
-    color:#c2185b;
+/* ESTADO 2: BLOQUEADO (Opaco y no se puede clickear) */
+.bloqueado {
+    opacity: 0.4;
+    filter: grayscale(80%);
+    pointer-events: none;
+    background: #e0e0e0;
 }
 
-.nombre{
-    font-size:14px;
+/* ESTADO 3: APROBADO (Opaco y tachado) */
+.aprobado {
+    background: #ff69b4;
+    color: white;
+    text-decoration: line-through;
+    opacity: 0.6;
 }
 
-.aprobado{
-    background:#ff69b4;
-    color:white;
-    text-decoration:line-through;
+.codigo {
+    font-weight: bold;
+    color: #c2185b;
 }
 
+.aprobado .codigo {
+    color: white;
+}
+
+.nombre {
+    font-size: 14px;
+}
 </style>
-
 </head>
 
 <body>
@@ -116,208 +123,289 @@ h1{
 <h1>💗 Malla Enfermería UDLA 💗</h1>
 
 <div class="progreso-container">
-
     <div class="texto-progreso">
         Progreso de la carrera:
         <span id="porcentaje">0%</span>
     </div>
-
     <div class="barra">
-
         <div id="barraProgreso"></div>
-
     </div>
-
 </div>
 
 <div class="container">
 <!-- SEMESTRE 1 -->
-
 <div class="semestre">
-
 <h2>Semestre 1</h2>
-
-<div class="ramo">
-<div class="codigo">MAT110</div>
-<div class="nombre">Introducción a Matemática Aplicada</div>
+<div class="ramo" id="MAT110" data-prereq="">
+    <div class="codigo">MAT110</div>
+    <div class="nombre">Introducción a Matemática Aplicada</div>
 </div>
-
-<div class="ramo">
-<div class="codigo">CBI111</div>
-<div class="nombre">Biología Celular</div>
+<div class="ramo" id="CBI111" data-prereq="">
+    <div class="codigo">CBI111</div>
+    <div class="nombre">Biología Celular</div>
 </div>
-
-<div class="ramo">
-<div class="codigo">LIC003</div>
-<div class="nombre">Salud Pública y Políticas Públicas</div>
+<div class="ramo" id="LIC003" data-prereq="">
+    <div class="codigo">LIC003</div>
+    <div class="nombre">Salud Pública y Políticas Públicas</div>
 </div>
-
-<div class="ramo">
-<div class="codigo">ENF301</div>
-<div class="nombre">Proceso de Atención en Enfermería I</div>
+<div class="ramo" id="ENF301" data-prereq="">
+    <div class="codigo">ENF301</div>
+    <div class="nombre">Proceso de Atención en Enfermería I</div>
 </div>
-
 </div>
 
 <!-- SEMESTRE 2 -->
-
 <div class="semestre">
-
 <h2>Semestre 2</h2>
-
-<div class="ramo">
-<div class="codigo">ENF410</div>
-<div class="nombre">Fundamentos de Enfermería en Salud Comunitaria</div>
+<div class="ramo" id="ENF410" data-prereq="ENF301">
+    <div class="codigo">ENF410</div>
+    <div class="nombre">Fundamentos de Enfermería en Salud Comunitaria</div>
 </div>
-
-<div class="ramo">
-<div class="codigo">CBI202</div>
-<div class="nombre">Histoembriología</div>
+<div class="ramo" id="CBI202" data-prereq="CBI111">
+    <div class="codigo">CBI202</div>
+    <div class="nombre">Histoembriología</div>
 </div>
-
-<div class="ramo">
-<div class="codigo">CQU203</div>
-<div class="nombre">Fundamentos de Química y Biología Área Salud</div>
+<div class="ramo" id="CQU203" data-prereq="MAT110">
+    <div class="codigo">CQU203</div>
+    <div class="nombre">Fundamentos de Química y Biología Área Salud</div>
 </div>
-
-<div class="ramo">
-<div class="codigo">LIC004</div>
-<div class="nombre">Métodos Participativos e Intervención Comunitaria</div>
+<div class="ramo" id="LIC004" data-prereq="">
+    <div class="codigo">LIC004</div>
+    <div class="nombre">Métodos Participativos e Intervención Comunitaria</div>
 </div>
-
-<div class="ramo">
-<div class="codigo">ENF402</div>
-<div class="nombre">Proceso de Atención en Enfermería II</div>
+<div class="ramo" id="ENF402" data-prereq="ENF301">
+    <div class="codigo">ENF402</div>
+    <div class="nombre">Proceso de Atención en Enfermería II</div>
 </div>
-
-<div class="ramo">
-<div class="codigo">ENF302</div>
-<div class="nombre">Psicología para el Ejercicio de la Enfermería</div>
+<div class="ramo" id="ENF302" data-prereq="ENF301">
+    <div class="codigo">ENF302</div>
+    <div class="nombre">Psicología para el Ejercicio de la Enfermería</div>
 </div>
-
 </div>
 
 <!-- SEMESTRE 3 -->
-
 <div class="semestre">
-
 <h2>Semestre 3</h2>
-
-<div class="ramo">
-<div class="codigo">ENF504</div>
-<div class="nombre">Epidemiología</div>
+<div class="ramo" id="ENF504" data-prereq="MAT110">
+    <div class="codigo">ENF504</div>
+    <div class="nombre">Epidemiología</div>
 </div>
-
-<div class="ramo">
-<div class="codigo">CBI302</div>
-<div class="nombre">Microbiología y Parasitología para Enfermería</div>
+<div class="ramo" id="CBI302" data-prereq="CBI111,CQU203">
+    <div class="codigo">CBI302</div>
+    <div class="nombre">Microbiología y Parasitología para Enfermería</div>
 </div>
-
-<div class="ramo">
-<div class="codigo">MYF302</div>
-<div class="nombre">Fisiología General</div>
+<div class="ramo" id="MYF302" data-prereq="CBI202">
+    <div class="codigo">MYF302</div>
+    <div class="nombre">Fisiología General</div>
 </div>
-
-<div class="ramo">
-<div class="codigo">AES519</div>
-<div class="nombre">Bioestadística</div>
+<div class="ramo" id="AES519" data-prereq="MAT110">
+    <div class="codigo">AES519</div>
+    <div class="nombre">Bioestadística</div>
 </div>
-
-<div class="ramo">
-<div class="codigo">LIC005</div>
-<div class="nombre">Taller Interdisciplinario I</div>
+<div class="ramo" id="LIC005" data-prereq="LIC004">
+    <div class="codigo">LIC005</div>
+    <div class="nombre">Taller Interdisciplinario I</div>
 </div>
-
-<div class="ramo">
-<div class="codigo">ENF506</div>
-<div class="nombre">Educación para la Salud</div>
+<div class="ramo" id="ENF506" data-prereq="ENF302,ENF402">
+    <div class="codigo">ENF506</div>
+    <div class="nombre">Educación para la Salud</div>
 </div>
-
 </div>
 
 <!-- SEMESTRE 4 -->
-
 <div class="semestre">
-
 <h2>Semestre 4</h2>
-
-<div class="ramo">
-<div class="codigo">ENF404</div>
-<div class="nombre">Farmacología</div>
+<div class="ramo" id="ENF404" data-prereq="MAT110,MYF302,CQU203">
+    <div class="codigo">ENF404</div>
+    <div class="nombre">Farmacología</div>
 </div>
-
-<div class="ramo">
-<div class="codigo">ENF401</div>
-<div class="nombre">Fisiopatología</div>
+<div class="ramo" id="ENF401" data-prereq="MYF302">
+    <div class="codigo">ENF401</div>
+    <div class="nombre">Fisiopatología</div>
 </div>
-
-<div class="ramo">
-<div class="codigo">LIC006</div>
-<div class="nombre">Taller Interdisciplinario II</div>
+<div class="ramo" id="LIC006" data-prereq="LIC005">
+    <div class="codigo">LIC006</div>
+    <div class="nombre">Taller Interdisciplinario II</div>
 </div>
-
 </div>
 
 <!-- SEMESTRE 5 -->
-
 <div class="semestre">
-
 <h2>Semestre 5</h2>
-
-<div class="ramo">
-<div class="codigo">ENF501</div>
-<div class="nombre">Salud y Morbilidad del Adulto I</div>
+<div class="ramo" id="ENF501" data-prereq="ENF401,ENF402,ENF404">
+    <div class="codigo">ENF501</div>
+    <div class="nombre">Salud y Morbilidad del Adulto I</div>
+</div>
+<div class="ramo" id="ENF505" data-prereq="AES519,ENF402">
+    <div class="codigo">ENF505</div>
+    <div class="nombre">Gestión y Administración en Enfermería I</div>
+</div>
+<div class="ramo" id="ENF500" data-prereq="ENF302,ENF401,ENF402,ENF404,CBI302,ENF410,LIC004">
+    <div class="codigo">ENF500</div>
+    <div class="nombre">Práctica Integrada I</div>
+</div>
 </div>
 
-<div class="ramo">
-<div class="codigo">ENF505</div>
-<div class="nombre">Gestión y Administración en Enfermería I</div>
+<!-- SEMESTRE 6 -->
+<div class="semestre">
+<h2>Semestre 6</h2>
+<div class="ramo" id="ENF605" data-prereq="ENF505">
+    <div class="codigo">ENF605</div>
+    <div class="nombre">Gestión y Adm. en Enfermería II</div>
+</div>
+<div class="ramo" id="ENF602" data-prereq="ENF500,ENF501">
+    <div class="codigo">ENF602</div>
+    <div class="nombre">Salud y Morbil. Adulto II</div>
+</div>
+<div class="ramo" id="ENF701" data-prereq="ENF501">
+    <div class="codigo">ENF701</div>
+    <div class="nombre">Salud del Adulto Mayor</div>
+</div>
+<div class="ramo" id="ENF606" data-prereq="ENF500">
+    <div class="codigo">ENF606</div>
+    <div class="nombre">Bioética</div>
+</div>
+<div class="ramo" id="ENF600" data-prereq="ENF500,ENF501,ENF504,ENF505,ENF506,LIC005">
+    <div class="codigo">ENF600</div>
+    <div class="nombre">Práctica Integrada II</div>
+</div>
 </div>
 
-<div class="ramo">
-<div class="codigo">ENF500</div>
-<div class="nombre">Práctica Integrada I</div>
+<!-- SEMESTRE 7 -->
+<div class="semestre">
+<h2>Semestre 7</h2>
+<div class="ramo" id="ENF804" data-prereq="ENF506,ENF600,ENF602">
+    <div class="codigo">ENF804</div>
+    <div class="nombre">Salud del Niño y Adolesc. I</div>
+</div>
+<div class="ramo" id="ENF805" data-prereq="ENF600,ENF602,ENF701">
+    <div class="codigo">ENF805</div>
+    <div class="nombre">Enfermería en Urgencias</div>
+</div>
+<div class="ramo" id="ENF700" data-prereq="ENF506,ENF600,ENF602,ENF605,ENF606,ENF701,LIC006">
+    <div class="codigo">ENF700</div>
+    <div class="nombre">Práctica Integrada III</div>
+</div>
+<div class="ramo" id="ENF705" data-prereq="AES519,CBI111,CBI202,ENF301,ENF302,ENF401,ENF402,ENF404,ENF500,ENF506,ENF600,ENF602,ENF605,ENF606,ENF701,MAT110,MYF302">
+    <div class="codigo">ENF705</div>
+    <div class="nombre">Metodolog. de la Investigación</div>
+</div>
+<div class="ramo" id="ENF603" data-prereq="ENF302,ENF602">
+    <div class="codigo">ENF603</div>
+    <div class="nombre">Enfermería en Salud Mental</div>
+</div>
 </div>
 
+<!-- SEMESTRE 8 -->
+<div class="semestre">
+<h2>Semestre 8</h2>
+<div class="ramo" id="ENF802" data-prereq="ENF804,ENF700">
+    <div class="codigo">ENF802</div>
+    <div class="nombre">Salud del Niño y Adolesc. II</div>
+</div>
+<div class="ramo" id="ENF800" data-prereq="ENF603,ENF700,ENF804,ENF805">
+    <div class="codigo">ENF800</div>
+    <div class="nombre">Práctica Integrada IV</div>
+</div>
+<div class="ramo" id="ENF904" data-prereq="ENF606,ENF700,ENF705,ENF804,ENF805">
+    <div class="codigo">ENF904</div>
+    <div class="nombre">Seminario de Grado</div>
+</div>
+<div class="ramo" id="ENF803" data-prereq="ENF504,ENF602">
+    <div class="codigo">ENF803</div>
+    <div class="nombre">Salud Ocupacional y Ambiental</div>
+</div>
+<div class="ramo" id="ENF801" data-prereq="ENF602,ENF700,ENF804">
+    <div class="codigo">ENF801</div>
+    <div class="nombre">Cuidados Paliativos Integrales</div>
+</div>
+<div class="ramo" id="ENF703" data-prereq="ENF600,ENF602">
+    <div class="codigo">ENF703</div>
+    <div class="nombre">Infecciones y Aten. de Salud</div>
+</div>
+</div>
+
+<!-- SEMESTRE 9 -->
+<div class="semestre">
+<h2>Semestre 9</h2>
+<div class="ramo" id="ENF906" data-prereq="ENF703,ENF800,ENF801,ENF803,ENF904">
+    <div class="codigo">ENF906</div>
+    <div class="nombre">Sopor. Vital Avanz. para Pers.</div>
+</div>
+<div class="ramo" id="ENF901" data-prereq="ENF904,ENF803,ENF802,ENF801,ENF800,ENF703">
+    <div class="codigo">ENF901</div>
+    <div class="nombre">Internado I</div>
+</div>
+</div>
+
+<!-- SEMESTRE 10 -->
+<div class="semestre">
+<h2>Semestre 10</h2>
+<div class="ramo" id="ENF903" data-prereq="ENF703,ENF800,ENF801,ENF802,ENF803,ENF904,ENF906">
+    <div class="codigo">ENF903</div>
+    <div class="nombre">Preparación Examen de Título</div>
+</div>
+<div class="ramo" id="ENF902" data-prereq="ENF904,ENF803,ENF802,ENF801,ENF800,ENF703,ENF906">
+    <div class="codigo">ENF902</div>
+    <div class="nombre">Internado II</div>
+</div>
 </div>
 
 </div>
 
 <script>
-
 const ramos = document.querySelectorAll(".ramo");
-
 const barra = document.getElementById("barraProgreso");
-
 const porcentaje = document.getElementById("porcentaje");
 
-actualizarBarra();
-
-ramos.forEach(ramo=>{
-
-    ramo.addEventListener("click",()=>{
-
-        ramo.classList.toggle("aprobado");
-
-        actualizarBarra();
-
+function evaluarPrerequisitos() {
+    ramos.forEach(ramo => {
+        const prereqs = ramo.getAttribute("data-prereq");
+        
+        if (prereqs) {
+            const listaPrereqs = prereqs.split(",");
+            let cumpleTodos = true;
+            
+            listaPrereqs.forEach(codigo => {
+                const ramoRequisito = document.getElementById(codigo.trim());
+                if (ramoRequisito && !ramoRequisito.classList.contains("aprobado")) {
+                    cumpleTodos = false;
+                }
+            });
+            
+            if (cumpleTodos) {
+                ramo.classList.remove("bloqueado");
+            } else {
+                ramo.classList.add("bloqueado");
+                ramo.classList.remove("aprobado"); 
+            }
+        } else {
+            ramo.classList.remove("bloqueado");
+        }
     });
+    
+    actualizarBarra();
+}
 
+function actualizarBarra() {
+    let aprobados = document.querySelectorAll(".aprobado").length;
+    let total = ramos.length;
+    let progreso = (aprobados / total) * 100;
+    
+    barra.style.width = progreso + "%";
+    porcentaje.innerHTML = progreso.toFixed(0) + "%";
+}
+
+ramos.forEach(ramo => {
+    ramo.addEventListener("click", () => {
+        if (!ramo.classList.contains("bloqueado")) {
+            ramo.classList.toggle("aprobado");
+            evaluarPrerequisitos();
+        }
+    });
 });
 
-function actualizarBarra(){
-
-    let aprobados = document.querySelectorAll(".aprobado").length;
-
-    let total = ramos.length;
-
-    let progreso = (aprobados/total)*100;
-
-    barra.style.width = progreso+"%";
-
-    porcentaje.innerHTML = progreso.toFixed(0)+"%";
-
-}
+evaluarPrerequisitos();
 
 </script>
 
