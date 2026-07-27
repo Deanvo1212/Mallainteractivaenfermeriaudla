@@ -1,1 +1,37 @@
-Mi Malla Interactiva
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Mi Malla Interactiva</title>
+  <style>
+    body { 
+      display: flex; justify-content: center; align-items: center; 
+      height: 100vh; background: #1a1a1a; margin: 0; font-family: sans-serif;
+    }
+    #malla { 
+      display: grid; grid-template-columns: repeat(10, 30px); gap: 2px; 
+    }
+    .celda { 
+      width: 30px; height: 30px; background: #333; 
+      border-radius: 4px; cursor: pointer; transition: 0.2s; 
+    }
+    .celda:hover { background: #555; }
+    .activa { background: #39d353; } /* Color verde estilo GitHub */
+  </style>
+</head>
+<body>
+  <div id="malla"></div>
+
+  <script>
+    const contenedorMalla = document.getElementById('malla');
+    // Esto crea 100 cuadritos (10x10)
+    for (let i = 0; i < 100; i++) {
+      const celda = document.createElement('div');
+      celda.className = 'celda';
+      // Esto hace que cambien de color al hacer clic
+      celda.onclick = () => celda.classList.toggle('activa');
+      contenedorMalla.appendChild(celda);
+    }
+  </script>
+</body>
+</html>
