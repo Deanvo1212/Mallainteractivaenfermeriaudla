@@ -1,37 +1,160 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Mi Malla Interactiva</title>
-  <style>
-    body { 
-      display: flex; justify-content: center; align-items: center; 
-      height: 100vh; background: #1a1a1a; margin: 0; font-family: sans-serif;
-    }
-    #malla { 
-      display: grid; grid-template-columns: repeat(10, 30px); gap: 2px; 
-    }
-    .celda { 
-      width: 30px; height: 30px; background: #333; 
-      border-radius: 4px; cursor: pointer; transition: 0.2s; 
-    }
-    .celda:hover { background: #555; }
-    .activa { background: #39d353; } /* Color verde estilo GitHub */
-  </style>
-</head>
-<body>
-  <div id="malla"></div>
+<html lang="es">
 
-  <script>
-    const contenedorMalla = document.getElementById('malla');
-    // Esto crea 100 cuadritos (10x10)
-    for (let i = 0; i < 100; i++) {
-      const celda = document.createElement('div');
-      celda.className = 'celda';
-      // Esto hace que cambien de color al hacer clic
-      celda.onclick = () => celda.classList.toggle('activa');
-      contenedorMalla.appendChild(celda);
-    }
-  </script>
+<head>
+
+<meta charset="UTF-8">
+
+<title>Malla Enfermería 💗</title>
+
+<style>
+
+body{
+
+font-family:Arial;
+
+background:#fff0f6;
+
+margin:0;
+
+padding:30px;
+
+}
+
+h1{
+
+text-align:center;
+
+color:#d63384;
+
+}
+
+.container{
+
+display:flex;
+
+gap:20px;
+
+overflow-x:auto;
+
+}
+
+.semestre{
+
+background:white;
+
+border-radius:20px;
+
+padding:15px;
+
+min-width:220px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+}
+
+.semestre h2{
+
+text-align:center;
+
+color:#d63384;
+
+}
+
+.ramo{
+
+background:#ffd6e7;
+
+padding:12px;
+
+border-radius:12px;
+
+margin-bottom:10px;
+
+cursor:pointer;
+
+transition:.3s;
+
+font-size:15px;
+
+}
+
+.ramo:hover{
+
+transform:scale(1.04);
+
+}
+
+.aprobado{
+
+background:#ff69b4;
+
+color:white;
+
+text-decoration:line-through;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>💗 Malla Enfermería 💗</h1>
+
+<div class="container">
+
+<div class="semestre">
+
+<h2>Semestre 1</h2>
+
+<div class="ramo">MAT110 Introducción a Matemática</div>
+
+<div class="ramo">CBI111 Biología Celular</div>
+
+<div class="ramo">LIC003 Salud Pública</div>
+
+<div class="ramo">ENF301 Atención Enfermería I</div>
+
+</div>
+
+<div class="semestre">
+
+<h2>Semestre 2</h2>
+
+<div class="ramo">ENF410 Fundamentos Enfermería</div>
+
+<div class="ramo">CBI202 Histoembriología</div>
+
+<div class="ramo">CQU203 Química</div>
+
+<div class="ramo">LIC004 Participación e Intervención</div>
+
+<div class="ramo">ENF402 Atención Enfermería II</div>
+
+<div class="ramo">ENF302 Psicología</div>
+
+</div>
+
+</div>
+
+<script>
+
+const ramos=document.querySelectorAll(".ramo");
+
+ramos.forEach(r=>{
+
+r.onclick=()=>{
+
+r.classList.toggle("aprobado");
+
+}
+
+})
+
+</script>
+
 </body>
+
 </html>
